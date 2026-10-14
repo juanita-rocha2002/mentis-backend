@@ -10,4 +10,7 @@ public interface ConsultaRepositoryPort {
     Optional<Consulta> obtenerPorId(Long id);
     List<Consulta> buscarPorDocumento(String tipoDocumento, String numeroDocumento);
     List<Consulta> buscarPorNombreCoincidencia(String terminoBusqueda);
+
+    boolean existePorDocumento(String tipoDocumento, String numeroDocumento);
+    void eliminarPorDocumento(String tipoDocumento, String numeroDocumento);
 }

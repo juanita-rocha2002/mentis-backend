@@ -3,6 +3,7 @@ package com.clinico.mentis.infraestructura.adapter.persistence;
 import com.clinico.mentis.domain.model.Consulta;
 import com.clinico.mentis.domain.repository.ConsultaRepositoryPort;
 import com.clinico.mentis.infraestructura.adapter.persistence.entity.ConsultaEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -38,5 +39,16 @@ public class ConsultaJpaAdapter implements ConsultaRepositoryPort {
     public List<Consulta> buscarPorNombreCoincidencia(String terminoBusqueda) {
         return repository.findByUsuarioNombreContainingIgnoreCaseOrUsuarioDocumentoNumeroContaining(terminoBusqueda, terminoBusqueda)
                 .stream().map(ConsultaEntity::toDomain).toList();
+    }
+
+    @Override
+    public boolean existePorDocumento(String tipoDocumento, String numeroDocumento) {
+        return repository.existsByUsuarioDocumentoTipoAndUsuarioDocumentoNumero(tipoDocumento, numeroDocumento);
+    }
+
+    @Override
+    @Transactional
+    public void eliminarPorDocumento(String tipoDocumento, String numeroDocumento) {
+        repository.deleteByUsuarioDocumentoTipoAndUsuarioDocumentoNumero(tipoDocumento, numeroDocumento);
     }
 }

@@ -10,4 +10,7 @@ import java.util.List;
 public interface SpringDataConsultaRepository extends JpaRepository<ConsultaEntity, Long> {
     List<ConsultaEntity> findByUsuarioDocumentoTipoAndUsuarioDocumentoNumero(String tipo, String numero);
     List<ConsultaEntity> findByUsuarioNombreContainingIgnoreCaseOrUsuarioDocumentoNumeroContaining(String nombre, String doc);
+
+    boolean existsByUsuarioDocumentoTipoAndUsuarioDocumentoNumero(String tipo, String numero);
+    void deleteByUsuarioDocumentoTipoAndUsuarioDocumentoNumero(String tipo, String numero);
 }

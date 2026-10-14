@@ -2,6 +2,7 @@ package com.clinico.mentis.infraestructura.config;
 
 import com.clinico.mentis.appication.usecase.AgregarNotaManejoUseCase;
 import com.clinico.mentis.appication.usecase.BuscarHistoriaClinicaUseCase;
+import com.clinico.mentis.appication.usecase.EliminarPacienteUseCase;
 import com.clinico.mentis.appication.usecase.RegistrarConsultaUseCase;
 import com.clinico.mentis.domain.repository.ConsultaRepositoryPort;
 import org.springframework.context.annotation.Bean;
@@ -23,5 +24,10 @@ public class BeanConfiguration {
     @Bean
     public AgregarNotaManejoUseCase actualizarNotaManejoUseCase(ConsultaRepositoryPort port) {
         return new AgregarNotaManejoUseCase(port);
+    }
+
+    @Bean
+    public EliminarPacienteUseCase eliminarPacienteUseCase(ConsultaRepositoryPort port) {
+        return new EliminarPacienteUseCase(port);
     }
 }
